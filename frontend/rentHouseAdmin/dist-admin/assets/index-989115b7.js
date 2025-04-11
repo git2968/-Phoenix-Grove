@@ -1,0 +1,1 @@
+function e(){const t=new Date().getHours();return t<9?"早上好":t<=11?"上午好":t<=13?"中午好":t<20?"下午好":"晚上好"}function o(){const n=["加油努力工作","喝一杯咖啡吧","休息一会儿吧","准备吃什么呢","要不要站起来活动一下"],t=Math.floor(Math.random()*n.length);return n[t]}export{e as t,o as w};

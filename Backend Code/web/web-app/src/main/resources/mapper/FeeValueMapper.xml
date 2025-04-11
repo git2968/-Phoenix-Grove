@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.d4c.lease.web.app.mapper.FeeValueMapper">
+
+
+    <select id="selectListByApartmentId"
+            resultType="xyz.d4c.lease.web.app.vo.fee.FeeValueVo">
+        select v.id,
+               v.name,
+               v.unit,
+               v.fee_key_id,
+               k.name fee_key_name
+        from fee_value v
+                 left join fee_key k on v.fee_key_id = k.id and k.is_deleted = 0
+        where v.is_deleted = 0
+          and v.id in (
+            select fee_value_id
+            from apartment_fee_value
+            where is_deleted = 0
+              and apartment_id = #{apartmentId}
+        )
+    </select>
+</mapper>
